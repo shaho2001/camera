@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ناسینەوەی زمانی ئاماژەی کوردی</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Preload the Noto Sans Arabic font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>سیستەمی ناسینەوەی زمانی ئاماژەی کوردی</h1>
+        
+        <p class="description">
+            ئەم سیستەمە بۆ کەسانی نابیست دیزاین کراوە و هێماکانی زمانی ئاماژەی کوردی دەناسێتەوە.
+        </p>
+        
+        <div class="main-content">
+            <div class="video-container">
+                <video id="video" autoplay playsinline muted></video>
+                <div id="live-indicator" class="live-badge">زیندوو</div>
+                <button id="flip-camera" class="flip-camera-btn">گۆڕینی کامێرا</button>
+                <canvas id="output-canvas" class="output-canvas"></canvas>
+            </div>
+            
+            <div class="result-section">
+                <div id="output">لەچاوەڕوانیدایە...</div>
+                <div class="message-container">
+                    <div class="message-box-title">نووسینی پەیوەندیکردن:</div>
+                    <textarea id="message-box" class="message-box" readonly placeholder="دەستپێبکە بە نیشاندانی هێماکان..."></textarea>
+                    <div class="button-container">
+                        <button id="clear-btn" class="control-btn">پاککردنەوە</button>
+                        <button id="copy-btn" class="control-btn">لەبەرگرتنەوە</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="status" class="status">دامەزراندن...</div>
+        <div id="error-message" class="error-message"></div>
+        
+        <div class="instructions">
+            <h2>ڕێنماییەکان:</h2>
+            <ul>
+                <li><strong>سڵاو:</strong> تەنها پەنجەی نیشاندەر (پەنجەی شەهادە) بەرز بکەوە و پەنجەکانی تر دابخە.</li>
+                <li><strong>بەڵێ:</strong> قامکەکان دابخە و پەنجە گەورە (هەگجە) بەرەو سەرەوە بکە (لایک).</li>
+                <li><strong>نەخێر:</strong> پەنجەی نیشاندەر بەرز بکەوە و بە لای چەپ و ڕاستدا بجولێنەوە.</li>
+                <li><strong>سوپاس:</strong> هەموو پەنجەکان ڕاست بکەوە و لەپی دەستت پیشان بدە.</li>
+                <li><strong>باشە:</strong> بازنەیەک بە پەنجەی گەورە و پەنجەی نیشاندەر دروست بکە، پەنجەکانی تر ڕاست بکەوە.</li>
+                <li><strong>تکایە:</strong> هەموو پەنجەکان بەیەکەوە ڕاست بکەوە.</li>
+                <li><strong>وەستە:</strong> هەموو پەنجەکان ڕاست بکەوە و لێک دووریان بخەوە.</li>
+                <li>دڵنیابەوە لەوەی کە هەموو دەستت بەڕوونی لە کامێراکەدا دیارە.</li>
+                <li>لە شوێنێک دانیشە کە ڕووناکییەکەی باش بێت.</li>
+                <li>پەیامەکان بەشێوەی ئۆتۆماتیکی زیاد دەکرێن بۆ تێکستی پەیوەندیکردن.</li>
+                <li>دەتوانیت بە دوگمەی "گۆڕینی کامێرا" کامێرای پێشەوە و دواوە بگۆڕیت.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Load scripts at end of body for better performance -->
+    <!-- MediaPipe Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3/drawing_utils.js" crossorigin="anonymous"></script>
+    
+    <!-- Application JavaScript -->
+    <script src="{{ url_for('static', filename='js/hand-detection.js') }}"></script>
+</body>
+</html>
